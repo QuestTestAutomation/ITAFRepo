@@ -1,4 +1,4 @@
-from Sandbox.Libraries.DEV.testrail import *
+from testrail import *
 import string
 import re
 import pprint

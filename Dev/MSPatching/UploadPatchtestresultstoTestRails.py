@@ -1,6 +1,6 @@
-from Sandbox.Libraries.DEV import TestRailLibraryExt
-from Sandbox.Libraries.DEV import Utillib
-from Sandbox.Libraries.DEV import XLLib
+from ITAFRepo.Dev.TestRails import TestRailLibraryExt
+from ITAFRepo.Dev.Utilities import Utillib
+from ITAFRepo.Dev.Excel import XLLib
 
 ResultsFile = "C:/Users/sanumolu/Documents/PatchResults/Patch Testing Results 13Dec2018.xlsx"
 TestRailURL = 'https://tr.labs.quest.com/testrail/'

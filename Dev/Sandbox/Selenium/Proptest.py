@@ -1,4 +1,6 @@
 from ITAFRepo.Dev.Utilities import QSTAFrameworkLib
+import os
+
 
 
 Variablesfile  = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Resources/ITAFParameters.cfg'

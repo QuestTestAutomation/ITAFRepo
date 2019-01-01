@@ -1,4 +1,4 @@
-from Sandbox.Libraries.DEV import Utillib
+from ITAFRepo.Dev.Utilities import Utillib
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -37,7 +37,7 @@ driver.find_element_by_id('s_swepi_2').click()
 time.sleep(10)
 driver.find_element_by_id('s_swepi_2').send_keys("menaka_murugeshan")
 
-driver.execute_script("document.getElementById('s_swepi_1').value='12345'")
+#driver.execute_script("document.getElementById('s_swepi_1').value='12345'")
 
 lists1 = driver.find_elements_by_xpath("//img[(@src,'About'])]")
 print(len(lists1))

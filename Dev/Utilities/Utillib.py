@@ -20,7 +20,8 @@ import inspect
 
 class  utillib():
 
-    def __init__(selfself):
+    def __init__(self):
+
         pass
 
 
@@ -111,46 +112,46 @@ class  utillib():
 
     @staticmethod
     def Build_File_Path(self,Str1,Str2):
-        str3 = Str1.strip() + "/" +  Str2.strip()
+        str3 = Str1.strip() + "/" + Str2.strip()
 
         return str3
 
 
     def create_run_test_results_file(self,vTestResultsfile,vTestResultsheet):
-        XLLib = XLLib.XLLib()
-        XLLib.create_workbook(vTestResultsfile,vTestResultsheet)
-        XLLib.set_xl_cell_value(vTestResultsfile,vTestResultsheet,1,1,"TestCaseName")
+        oXLLib = XLLib.XLLib()
+        oXLLib.create_workbook(vTestResultsfile,vTestResultsheet)
+        oXLLib.set_xl_cell_value(vTestResultsfile,vTestResultsheet,1,1,"TestCaseName")
         #XLLib.create_workbook(vTestResultsfile,vTestResultsheet)
-        XLLib.set_xl_cell_value(vTestResultsfile,vTestResultsheet,1,1,"TestCaseName")
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 2, "TestCaseDescription")
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 3, "Status")
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 4, "UpdatedDateTimeStamp")
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 5, "TestData")
+        oXLLib.set_xl_cell_value(vTestResultsfile,vTestResultsheet,1,1,"TestCaseName")
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 2, "TestCaseDescription")
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 3, "Status")
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 4, "UpdatedDateTimeStamp")
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 5, "TestData")
 
     def create_test_case_results_file(self,vTestCaseResultsfile,vTestCaseResultsheet,vTCName,vTCDescription):
-        XLLib = XLLib.XLLib()
-        XLLib.create_workbook(vTestCaseResultsfile, vTestCaseResultsheet)
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 1, "TestCaseName")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 2, vTCName)
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 3, "TestCaseDescription")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 4,vTCDescription)
+        oXLLib = XLLib.XLLib()
+        oXLLib.create_workbook(vTestCaseResultsfile, vTestCaseResultsheet)
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 1, "TestCaseName")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 2, vTCName)
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 3, "TestCaseDescription")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 4,vTCDescription)
 
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 1, "Test Case Steps")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 2,"Action")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 3, "Expected Result")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 4, "Actual Result")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 5, "Execution Status")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 6, "Comments")
-        XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 7, "DateTime")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 1, "Test Case Steps")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 2,"Action")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 3, "Expected Result")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 4, "Actual Result")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 5, "Execution Status")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 6, "Comments")
+        oXLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 7, "DateTime")
 
     def update_run_test_results_file(self,vTestResultsfile, vTestResultsheet,irow,vtcname,vtcdescription,status,UpdatedDateTimeStamp,TestData):
-        XLLib = XLLib.XLLib()
-        XLLib.create_workbook(vTestResultsfile, vTestResultsheet)
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 1, vtcname)
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 2, vtcdescription)
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 3, status)
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 4, UpdatedDateTimeStamp)
-        XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 5, TestData)
+        oXLLib = XLLib.XLLib()
+        oXLLib.create_workbook(vTestResultsfile, vTestResultsheet)
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 1, vtcname)
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 2, vtcdescription)
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 3, status)
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 4, UpdatedDateTimeStamp)
+        oXLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 5, TestData)
 
     def get_test_case_row_number(self,file,sheetname,TCName):
         irow = 0
@@ -163,13 +164,15 @@ class  utillib():
                 break
 
         return irow
-
-    def check_exists_by_xpath(self,driver,xpath):
+    """
+    
+    def check_element_exists_by_xpath(self,driver,xpath):
         try:
             driver.find_element_by_xpath(xpath)
         except NoSuchElementException:
             return False
         return True
+    """
 
     def check_element_exists_by_xpath(self,driver,expath,timeout):
         try:

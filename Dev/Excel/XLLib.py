@@ -260,10 +260,17 @@ class XLLib():
             tabledict = {}
             mywb = load_workbook(file)
             mysheet = mywb[sheetname]
+
             for row in range(1, mysheet.max_row):
                 column = []
+                #print("my max column")
+                #print(mysheet.max_column)
+                #max_column = int(mysheet.max_column) + 1
+                #print(max_column)
                 for col in range(1, mysheet.max_column):
                     if mysheet.cell(column=col, row=row).value != 'None':
+                        #print(col)
+                        #print(mysheet.cell(column=col, row=row).value)
                         column.append(str(mysheet.cell(column=col, row=row).value))
                     else:
                         column.append('None')
@@ -292,13 +299,14 @@ class XLLib():
     def get_xl_header_as_tuple(self, file, sheetname):
         try :
 
-            columnlist[]
+            columnlist = []
             mywb = load_workbook(file)
             mysheet = mywb[sheetname]
 
+
             for col in range(1, mysheet.max_column):
-                if mysheet.cell(column=col, 1).value != 'None':
-                    columnlist.append(str(mysheet.cell(column=col, 1).value))
+                if mysheet.cell(column=col, row=1).value != 'None':
+                    columnlist.append(str(mysheet.cell(column=col, row=1).value))
                 else:
                     columnlist.append('None')
 

@@ -3,7 +3,7 @@ import time
 import datetime
 import os
 from ITAFRepo.Dev.Excel import XLLib
-from ExceptionLib import ExceptionLib
+from ITAFRepo.Dev.Utilities.ExceptionLib import *
 
 import logging
 from selenium import webdriver
@@ -128,7 +128,7 @@ class  utillib():
         XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, 1, 5, "TestData")
 
     def create_test_case_results_file(self,vTestCaseResultsfile,vTestCaseResultsheet,vTCName,vTCDescription):
-        XLLib = ExcelLibrary.XLLib()
+        XLLib = XLLib.XLLib()
         XLLib.create_workbook(vTestCaseResultsfile, vTestCaseResultsheet)
         XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 1, "TestCaseName")
         XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 1, 2, vTCName)
@@ -144,7 +144,7 @@ class  utillib():
         XLLib.set_xl_cell_value(vTestCaseResultsfile, vTestCaseResultsheet, 3, 7, "DateTime")
 
     def update_run_test_results_file(self,vTestResultsfile, vTestResultsheet,irow,vtcname,vtcdescription,status,UpdatedDateTimeStamp,TestData):
-        XLLib = ExcelLibrary.XLLib()
+        XLLib = XLLib.XLLib()
         XLLib.create_workbook(vTestResultsfile, vTestResultsheet)
         XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 1, vtcname)
         XLLib.set_xl_cell_value(vTestResultsfile, vTestResultsheet, irow, 2, vtcdescription)

@@ -1,1 +1,1 @@
-from Sandbox.Libraries.DEV import TestRailLibrary
+from ITAFRepo.Dev.TestRails import TestRailLibrary

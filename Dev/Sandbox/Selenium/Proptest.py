@@ -1,7 +1,7 @@
-from Sandbox.Libraries.DEV import QSTAFrameworkLib
+from ITAFRepo.Dev.Utilities import QSTAFrameworkLib
 
 
-Variablesfile  = 'c:/QSTAF/Resources/QSTAFParameters.cfg'
+Variablesfile  = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Resources/ITAFParameters.cfg'
 filehandle = open(Variablesfile)
 parameter_dict = {}
 for Line in filehandle:

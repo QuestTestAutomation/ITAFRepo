@@ -2,8 +2,8 @@
 import time
 import datetime
 import os
-from Sandbox.Libraries.DEV import ExcelLibrary
-from Sandbox.Libraries.DEV.ExceptionLib import *
+from ITAFRepo.Dev.Excel import XLLib
+from ExceptionLib import ExceptionLib
 
 import logging
 from selenium import webdriver
@@ -117,7 +117,7 @@ class  utillib():
 
 
     def create_run_test_results_file(self,vTestResultsfile,vTestResultsheet):
-        XLLib = ExcelLibrary.XLLib()
+        XLLib = XLLib.XLLib()
         XLLib.create_workbook(vTestResultsfile,vTestResultsheet)
         XLLib.set_xl_cell_value(vTestResultsfile,vTestResultsheet,1,1,"TestCaseName")
         #XLLib.create_workbook(vTestResultsfile,vTestResultsheet)

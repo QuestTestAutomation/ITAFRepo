@@ -1,0 +1,73 @@
+1534161505916	geckodriver	INFO	Listening on 127.0.0.1:57508
+1534161506306	mozprofile::profile	INFO	Using profile path C:\Users\SANUMOLU\AppData\Local\Temp\rust_mozprofile.2OBEXtdTCbHA
+1534161506321	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1534161506415	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57513
+1534161768612	geckodriver	INFO	Listening on 127.0.0.1:52883
+1534161769158	mozprofile::profile	INFO	Using profile path C:\Users\SANUMOLU\AppData\Local\Temp\rust_mozprofile.ngGvwSQFBz9P
+1534161769189	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1534161769205	geckodriver::marionette	INFO	Connecting to Marionette on localhost:52888
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 5920, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+[Parent 5920, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 4164, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 4164, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+[Child 5312, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5312, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 5764, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5764, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[GPU 420, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1534161886157	geckodriver	INFO	Listening on 127.0.0.1:53148
+1534161886703	mozprofile::profile	INFO	Using profile path C:\Users\SANUMOLU\AppData\Local\Temp\rust_mozprofile.doWzwhUwWaiG
+1534161886718	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1534161886750	geckodriver::marionette	INFO	Connecting to Marionette on localhost:53155
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 5676, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5676, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 7016, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 7016, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6412, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+46
+[Child 5176, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript error: about:newtab, line 960: TypeError: gSnippetsMap.getTotalBookmarksCount is not a function
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 6700, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6180, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6104, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[GPU 916, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1534162923012	geckodriver	INFO	Listening on 127.0.0.1:62198
+1534162923573	mozprofile::profile	INFO	Using profile path C:\Users\SANUMOLU\AppData\Local\Temp\rust_mozprofile.KVDHgKxBegLz
+1534162923589	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1534162923620	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62205
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 3040, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 3040, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1534162928684	Marionette	INFO	Listening on port 2828
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 1216, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 2980, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 2980, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6216, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6216, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 1216, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\SANUMOLU\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6028, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6028, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346

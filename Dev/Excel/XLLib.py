@@ -2,7 +2,7 @@
 This library has functions related to the read,write and  append operations on Excel sheets.
 """
 
-from ITAF.Dev.Utilities.ExceptionLib import *
+from ITAFRepo.Dev.Utilities.ExceptionLib import *
 
 #import ExceptionLib
 import inspect

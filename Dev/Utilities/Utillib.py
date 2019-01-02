@@ -20,15 +20,26 @@ import inspect
 
 class  utillib():
 
-    def __init__(self):
-
+    def __init__(self,globaldict):
+        globaldict1 = {}
+        globaldict1 = globaldict
+        self.globaldict1 = globaldict1
+        print('hehu')
+        print(globaldict1)
+        print('hehu')
+        print(globaldict.get('chromedriverpath'))
+        print('hehu')
+        print(self.globaldict1.get('TrialRun'))
+        print('hehu')
+        print(globaldict['TrialRun'])
         pass
 
 
 
     def Hello_World(self):
         print("Hello World")
-
+    """
+    
     @staticmethod
     def Get_Driver_Handle(self,brow):
         if brow ==  'ff':
@@ -43,6 +54,23 @@ class  utillib():
             # driver.get(url)
         if brow == 'ie':
             driver = webdriver.Ie()
+        return driver
+        """
+
+    def get_driver_handle(self,browser):
+        if browser == 'ff':
+            driver_path = self.globaldict1.get('firefoxdriverpath')
+            driver = webdriver.Firefox(executable_path= driver_path)
+        #   driver.get(url)
+        if browser == 'gc':
+            driver_path = self.globaldict1.get('chromedriverpath')
+            print('driver_path')
+            print(driver_path)
+            driver = webdriver.Chrome(executable_path= driver_path)
+
+        if browser == 'ie':
+            driver_path = self.globaldict1.get('IEdriverpath')
+            driver = webdriver.Ie(executable_path= driver_path)
         return driver
 
     @staticmethod

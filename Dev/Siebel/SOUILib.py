@@ -273,4 +273,34 @@ class Souilib(Seleniumutil.Seleniumutil):
             errmsg = 'Error while executing the function get_form_field_id'
             print(errmsg)
 
+    def get_form_textarea_name(self,fieldlabel):
+        try:
+            formfieldid = None
+            elements = self.driver.find_elements_by_css_selector('div.mceGridField')
+            for element in elements:
+                inputelements = element.find_elements_by_xpath('.//textarea')
+                for inputelement in inputelements:
+                    #print(inputelement.get_attribute('aria-label'))
+                    #print(inputelement.get_attribute('aria-label').upper() == (fieldlabel).upper())
+                    if inputelement.get_attribute('aria-label').upper() == (fieldlabel).upper():
+                        print(inputelement.get_attribute('name'))
+                        formfieldid = inputelement.get_attribute('name')
+                        break
+            return formfieldid
+        except:
+            errmsg = 'Error while executing the function get_form_field_id'
+            print(errmsg)
 
+    def set_form_applet_input_value(self,formfieldlabel,forminputvalue):
+        formfieldname = '//input[@name="' + self.get_form_field_name(formfieldlabel) + '"]'
+        print('**' + formfieldname)
+        self.driver.find_element_by_xpath(formfieldname).click()
+        self.driver.find_element_by_xpath(formfieldname).send_keys(forminputvalue)
+        self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)
+
+    def set_form_applet_textarea_value(self,formfieldlabel,forminputvalue):
+        formfieldname = '//textarea[@name="' + self.get_form_textarea_name(formfieldlabel) + '"]'
+        print('**' + formfieldname)
+        self.driver.find_element_by_xpath(formfieldname).click()
+        self.driver.find_element_by_xpath(formfieldname).send_keys(forminputvalue)
+        self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)

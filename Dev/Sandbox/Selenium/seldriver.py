@@ -53,7 +53,7 @@ time.sleep(8)
 #souilib.get_form_field_name('SR #')
 #souilib.get_form_textarea_name('Description')
 souilib.set_form_applet_input_value('External SR #','SuR123')
-souilib.set_form_applet_input_value('Type','Support Admin')
+souilib.select_form_applet_input_value('Type','Support Admin')
 time.sleep(2)
 souilib.set_form_applet_textarea_value('Summary','This is summary')
 

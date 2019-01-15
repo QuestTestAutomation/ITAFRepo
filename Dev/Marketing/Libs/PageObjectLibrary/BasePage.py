@@ -10,27 +10,21 @@ import time
 import datetime
 
 
-class Seleniumutil(object):
+class BasePage(object):
     """
     Base class that all page models can inherit from
     """
+    #appurl = "http://stage-o2/"
 
-    # appurl = "http://stage-o2/"
-
-    def __init__(self, driver, globaldict):
-        self.driver = driver
-        self.globaldict = globaldict
-        self.timeout = int(self.globaldict['ObjectLoadwaittime'])
-
-    def launch_url(self,url):
-        self.driver.get(url)
-        self.driver.maximize_window()
+    def __init__(self, selenium_driver,url,wait_time):
+        self.driver = selenium_driver
+        self.url = url
+        self.timeout = wait_time
+        self.verify_page(self)
 
     def find_element(self, *loc):
         return self.driver.find_element(*loc)
 
-    def find_elements(self, *loc):
-        return self.driver.find_element(*loc)
 
     def fill_form_by_css(self, form_css, value):
         elem = self.driver.find(form_css)
@@ -42,11 +36,16 @@ class Seleniumutil(object):
     def navigate(self):
         self.driver.get(self.url)
 
+    @staticmethod
+    def verify_page(self):
+        """
+        This method verifies the page is loaded
+        :return:
+        """
 
+    def wait_until_element_is_displayed(self,*loc):
 
-    def wait_until_element_is_displayed(self, *loc):
-
-        if (loc[0]) == 'link text':
+        if(loc[0]) == 'link text':
             locatermode = By.LINK_TEXT
 
         elif (loc[0]) == 'id':
@@ -61,13 +60,12 @@ class Seleniumutil(object):
         element = None
 
         try:
-            element = WebDriverWait(self.driver, self.timeout).until(
-                EC.presence_of_element_located((locatermode, loc[1])))
+            element = WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((locatermode,loc[1])))
         except:
             print(" Me unsupported locator exception")
             raise
 
-
+        return element
 
     def wait_until_page_is_displayed(self, *loc):
 
@@ -94,18 +92,19 @@ class Seleniumutil(object):
 
         return element
 
-    def switch_to_window(self, windowhandle):
+    def switch_to_window(self,windowhandle):
         self.driver.switch_to_window(windowhandle)
 
     def switch_to_iframe(self, *iframeele):
         element = self.find_element(*iframeele)
         self.driver.switch_to.frame(element)
 
+
     def switch_back_to_mainwindow(self):
         self.driver.switch_to.default_content
 
     """
-
+    
     def find_element(self,locatormode,locator):
         element = None
         if locatormode.upper() == "ID":
@@ -125,8 +124,7 @@ class Seleniumutil(object):
             raise Exception("unsupported locator exception")
         return element
     """
-
-    def fill_out_field(self, value, *loc):
+    def fill_out_field(self,value,*loc):
         self.wait_until_element_is_displayed(*loc)
         element = self.find_element(*loc)
         if element.is_displayed():
@@ -135,7 +133,7 @@ class Seleniumutil(object):
         else:
             raise Exception("The Element is not found")
 
-    def fill_out_field_textarea(self, value, *loc):
+    def fill_out_field_textarea(self,value,*loc):
         self.wait_until_element_is_displayed(*loc)
         element = self.find_element(*loc)
         if element.is_displayed():
@@ -144,13 +142,16 @@ class Seleniumutil(object):
         else:
             raise Exception("The Element is not found")
 
-    def add_file(self, value, *loc):
+    def add_file(self,value,*loc):
         try:
-
+            print(*loc)
             element = self.find_element(*loc)
+            print(element.is_displayed())
             element.send_keys(value)
         except:
             raise Exception("The Element is not found")
+
+
 
     def click_element(self, *loc):
 
@@ -163,7 +164,7 @@ class Seleniumutil(object):
         else:
             raise Exception("The Element is not found")
 
-    def select_dropdown_value(self, displaytext, *loc):
+    def select_dropdown_value(self, displaytext,*loc):
         self.wait_until_element_is_displayed(*loc)
         element = self.find_element(*loc)
         self.click_element(*loc)
@@ -173,10 +174,10 @@ class Seleniumutil(object):
             # print(option.text)
             if (option.text).upper() == (displaytext).upper():
                 selelement.select_by_value(option.get_attribute('value'))
+                print(option.get_attribute('value'))
+        #selelement.select_by_visible_text(displaytext)
 
-        # selelement.select_by_visible_text(displaytext)
-
-    def select_multiple_options(self, displaytext, delimiter, *loc):
+    def select_multiple_options(self, displaytext,delimiter,*loc):
         listvalues = (displaytext).split(delimiter)
 
         for listvalue in listvalues:
@@ -187,8 +188,8 @@ class Seleniumutil(object):
                     selelement.select_by_value(option.get_attribute('value'))
                     time.sleep(5)
 
-    def send_keyboard_keys(self,keyvalue):
-        self.driver.find_element_by_tag_name('body').send_keys(keyvalue)
+
+
 
 class Incorrectpageexception(Exception):
     """

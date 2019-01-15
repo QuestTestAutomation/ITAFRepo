@@ -91,7 +91,7 @@ class Sfdclib(Seleniumutil.Seleniumutil):
             index = 0
             colindex = 0
             # WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ui-jqgrid-htable")))
-            elements = self.driver.find_elements_by_tag_selector('label > span')
+            elements = self.driver.find_elements_by_css_selector('label > span')
             print(len(elements))
             for element in elements:
                 print(element.text)
@@ -105,16 +105,31 @@ class Sfdclib(Seleniumutil.Seleniumutil):
             errmsg = 'Error while executing the function get_text_column_value'
             print(errmsg)
 
-    def click_screen_link(self,screentext,screenindex):
-        try:
-            index = 0
-            elementfound = False
-            elements = self.driver.find_elments_by_link_text(screentext)
-            for element in elements:
-                index = index + 1
-                if index == int(screenindex)
-                    elementfound = True
 
+    def click_screen_link(self, screentext, screenindex):
+        try:
+            elementfound = False
+            index = 0
+            elements = self.driver.find_elements_by_link_text(screentext)
+
+            if len(elements) != 0:
+                for element in elements:
+                    index = index + 1
+                    if index == int(screenindex):
+                        element.click()
+                        elementfound = True
+                        break
+            if not elementfound:
+                self.driver.find_element_by_tag_name('b').click()
+                elements = self.driver.find_elements_by_link_text(screentext)
+
+                if len(elements) != 0:
+                    for element in elements:
+                        index = index + 1
+                        if index == int(screenindex):
+                            element.click()
+                            elementfound = True
+                            break
 
         except:
             errmsg = 'Error while executing the function get_text_column_value'

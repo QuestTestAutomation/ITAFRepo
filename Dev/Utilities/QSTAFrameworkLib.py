@@ -1,4 +1,4 @@
-from ITAFRepo.Dev.TestRails import TestRailLibraryExt
+from ITAFRepo.Dev.TestRails import ITAFTestRailLibrary
 from ITAFRepo.Dev.Utilities import Utillib
 from ITAFRepo.Dev.Excel import XLLib
 

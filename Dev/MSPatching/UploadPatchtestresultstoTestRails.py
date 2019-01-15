@@ -1,15 +1,15 @@
-from ITAFRepo.Dev.TestRails import TestRailLibraryExt
+from ITAFRepo.Dev.TestRails import ITAFTestRailLibrary
 from ITAFRepo.Dev.Utilities import Utillib
 from ITAFRepo.Dev.Excel import XLLib
 
-ResultsFile = "C:/Users/sanumolu/Documents/PatchResults/Patch Testing Results 13Dec2018.xlsx"
+ResultsFile = "C:/Users/sanumolu/Documents/PatchResults/Consolidated Patch Testing Results 12Jan2019.xlsx"
 TestRailURL = 'https://tr.labs.quest.com/testrail/'
 TestRailUser = 'seshikanth.anumolu@quest.com'
 TestRailPassword = 'P@ssw0rd@23'
 project_name = "MS Patching"
-run_name = "MS Patching December 2018"
+run_name = "MS Patching 01/2019"
 
-tlibe = TestRailLibraryExt.TestRailLibraryExt(TestRailURL, TestRailUser, TestRailPassword)
+tlibe = ITAFTestRailLibrary.TestRailLibraryExt(TestRailURL, TestRailUser, TestRailPassword)
 runid = tlibe.Get_TestRail_RunID(tlibe,project_name,run_name)
 print("runid")
 print(runid)

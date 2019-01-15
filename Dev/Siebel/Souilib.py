@@ -1,5 +1,6 @@
 from ITAFRepo.Dev.Utilities import Utillib
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import Select
@@ -36,7 +37,8 @@ class Souilib(Seleniumutil.Seleniumutil):
             self.fill_out_field('SUPPORT_ADMIN', *(By.ID, 's_swepi_1'))
             self.fill_out_field('SUPPORT_ADMIN', *(By.ID, 's_swepi_2'))
             self.click_element(*(By.XPATH, '//*[@id="s_swepi_22"]'))
-            time.sleep(30)
+            self.open_ui_sync()
+            #time.sleep(30)
             self.click_sitemap()
         except:
             errmsg = 'Error while executing the function Login_lite'
@@ -143,20 +145,23 @@ class Souilib(Seleniumutil.Seleniumutil):
             index = 0
             colindex = 0
             WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ui-jqgrid-htable")))
+
             elements = self.driver.find_elements_by_css_selector('.ui-jqgrid-htable')
-            #print('tables : ' + str(len(elements)))
+            #elements = self.driver.find_elements_by_xpath('//table[@class="ui-jqgrid-htable"]')
+
             for element in elements:
                 index = index + 1
                 if index == int(appletindex):
+
                     columns = element.find_elements_by_xpath('.//DIV')
                     for column in columns:
-                       # print(column.text)
+                        self.driver.execute_script("arguments[0].scrollIntoView()", column)
                         if (column.text).upper() == (columnlabel).upper():
                             colindex = colindex + 1
                             if (int(colindex)) == int(columnindex):
-                                print(column.get_attribute('id'))
                                 columnid = column.get_attribute('id')
                                 columnid = columnid[4:]
+
                                 break
             return columnid
 
@@ -177,6 +182,8 @@ class Souilib(Seleniumutil.Seleniumutil):
                 index = index + 1
                 if index == int(appletindex):
                    tableid = element.get_attribute('id')
+                   print('tableid')
+                   print(tableid)
                    break
             return tableid
 
@@ -186,14 +193,20 @@ class Souilib(Seleniumutil.Seleniumutil):
 
     def set_list_applet_column_value(self, columnlabel, appletindex, columnindex,rownumber,columnvalue):
         try:
-            columnid = rownumber + self.get_list_applet_column_id(columnlabel, appletindex, columnindex)
+            appletid = self.get_list_applet_table_id(1)
+            columnid = str(rownumber) + self.get_list_applet_column_id(columnlabel, appletindex, columnindex)
+
+            inputcolumnid = str(rownumber) + columnid[(columnid.find(appletid)+len(appletid)):]
+
             WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.ID, columnid)))
-            self.driver.find_element_by_id(columnid).send_keys(columnvalue)
+            self.driver.find_element_by_id(columnid).click()
+            self.driver.find_element_by_id(inputcolumnid).send_keys(columnvalue)
             time.sleep(3)
 
         except:
-            errmsg = 'Error while executing the function get_list_applet_table_id'
+            errmsg = 'Error while executing the function set_list_applet_column_value'
             print(errmsg)
+
 
     def get_list_applet_column_value(self, columnlabel, appletindex, columnindex, rownumber):
         try:
@@ -208,6 +221,10 @@ class Souilib(Seleniumutil.Seleniumutil):
 
     def press_keyboard_tab(self):
         self.send_keyboard_keys(Keys.TAB)
+        time.sleep(3)
+
+    def save_record(self):
+        ActionChains(self.driver).send_keys(Keys.CONTROL, "S").perform()
         time.sleep(3)
 
     def send_element_keyboard_tab(self,element):
@@ -241,7 +258,7 @@ class Souilib(Seleniumutil.Seleniumutil):
     def click_button(self, buttontitle,buttonindex):
         try:
             index = 0
-            WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#siebui-threadbar")))
+            #WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#siebui-threadbar")))
             elements = self.driver.find_elements_by_tag_name('button')
             print('buttons')
             print(len(elements))
@@ -304,3 +321,119 @@ class Souilib(Seleniumutil.Seleniumutil):
         self.driver.find_element_by_xpath(formfieldname).click()
         self.driver.find_element_by_xpath(formfieldname).send_keys(forminputvalue)
         self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)
+
+    def select_form_applet_input_value(self,formfieldlabel,forminputvalue):
+        formfieldname = '//input[@name="' + self.get_form_field_name(formfieldlabel) + '"]'
+        formimagename = '//img[@id="' + self.get_form_field_name(formfieldlabel) + '_icon"]'
+        print('**' + formfieldname)
+
+        self.driver.find_element_by_xpath(formimagename).click()
+        time.sleep(5)
+        self.driver.find_element_by_link_text(forminputvalue).click()
+        time.sleep(5)
+
+
+        self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)
+
+
+    def get_button_id(self, buttontitle,buttonindex):
+        try:
+            index = 0
+            Buttonid = None
+            #WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#siebui-threadbar")))
+            elements = self.driver.find_elements_by_tag_name('button')
+            print('buttons')
+            print(len(elements))
+            for element in elements:
+
+                if (element.text).upper() == (buttontitle).upper():
+                    index = index + 1
+                    if index == int(buttonindex):
+                        Buttonid = element.get_attribute('id')
+                        break
+            return Buttonid
+        except:
+            errmsg = 'Error while executing the function click_button'
+            print(errmsg)
+
+    def wait_for_button(self, buttontitle, buttonindex):
+        try:
+            self.open_ui_sync()
+            Buttonid = self.get_button_id(buttontitle, buttonindex)
+            WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.ID, Buttonid)))
+        except:
+            errmsg = 'Error while executing the function wait_for_button'
+            print(errmsg)
+
+    def open_ui_sync(self):
+        try:
+            state = True
+            flag = 1
+            while state:
+                elements = self.driver.find_elements_by_tag_name('html')
+                #print('***')
+                #print(len(elements))
+                for element in elements:
+                    #print(element.get_attribute('class'))
+                    #print('***************************************')
+                    #print(element.get_attribute('outerHTML'))
+                    #print('**************************************************')
+                    #print(element.get_attribute('innerHTML'))
+                    if element.get_attribute('class').upper() == 'siebui-busy'.upper():
+                        print('siebui-busy')
+                        flag = 1
+                        time.sleep(2)
+                        break
+
+                if flag == 0:
+                    state = False
+                flag = 0
+                if not state:
+                    break
+
+        except:
+            errmsg = 'Error while executing the function open_ui_sync'
+            print(errmsg)
+
+    def get_list_applet_column_id1(self, columnlabel, appletindex, columnindex):
+
+        print('executing get_list_applet_column_id ')
+        columnid = None
+        index = 0
+        colindex = 0
+        WebDriverWait(self.driver, self.timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ui-jqgrid-htable")))
+
+        #elements = self.driver.find_elements_by_css_selector('.ui-jqgrid-htable')
+        elements = self.driver.find_elements_by_xpath('//table[@class="ui-jqgrid-htable"]')
+        print('tables : ' + str(len(elements)))
+        for element in elements:
+            index = index + 1
+            if index == int(appletindex):
+
+                columns = element.find_elements_by_xpath('.//DIV')
+                print('columns ' + str(len(columns)))
+                for column in columns:
+                    self.driver.execute_script("arguments[0].scrollIntoView()", column)
+                    print(column.text)
+                    if (column.text).upper() == (columnlabel).upper():
+                        colindex = colindex + 1
+                        if (int(colindex)) == int(columnindex):
+                            print(column.get_attribute('id'))
+                            columnid = column.get_attribute('id')
+                            columnid = columnid[4:]
+                            print('*columnid')
+                            print(columnid)
+                            break
+        return columnid
+        """
+        
+        except:
+            errmsg = 'Error while executing the function get_list_applet_column_id'
+            print(errmsg)
+        """
+
+    def scroll_vertical(self):
+        hscroll = self.driver.find_elements_by_css_selector('div.ui-jqgrid-bdiv')
+        if hscroll:
+            print('I am in scroll')
+            self.driver.execute_script("arguments[0].scrollIntoView()",hscroll)

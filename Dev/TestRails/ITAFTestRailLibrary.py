@@ -1,4 +1,6 @@
-from testrail import *
+from ITAFRepo.Dev.TestRails.testrail import APIClient
+from ITAFRepo.Dev.TestRails.TestRailLibrary import TestRailLibrary
+
 import string
 import re
 import pprint
@@ -13,7 +15,7 @@ class TestRailLibraryExt:
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
     ROBOT_LIBRARY_VERSION = '0.1'
 
-    __all__ = ['Add_Result_To_TestRail_Case']
+    #__all__ = ['Add_Result_To_TestRail_Case']
 
     def __init__(self, TestRailURL='', user='', APIkey=''):
         self._client = APIClient(TestRailURL)
@@ -418,3 +420,11 @@ class TestRailLibraryExt:
 
         )
         return results
+    def Add_Result_To_TestRail_Case_details(self, project_name, test_run_name, caseID, testresult):
+        runID = self.Get_TestRail_RunID(self, project_name, test_run_name)
+
+        result = self._client.send_post(
+            'add_result_for_case/' + str(runID) + '/' + str(caseID),
+            testresult
+        )
+        return result

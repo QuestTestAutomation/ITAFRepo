@@ -1,27 +1,36 @@
-from Poc1.Lib.PageObjectLibrary.BasePage import BasePage
-from Poc1.Lib.PageObjectLibrary.BasePage import Incorrectpageexception
+from ITAFRepo.Dev.Marketing.Libs.PageObjectLibrary.BasePage import BasePage
+from ITAFRepo.Dev.Marketing.Libs.PageObjectLibrary.BasePage import Incorrectpageexception
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from Poc1.Lib.Locators import *
+from ITAFRepo.Dev.Marketing.Libs.Locators import *
+from ITAFRepo.Dev.Guerrillamail import Guerillamaillib
+from ITAFRepo.Dev.Utilities import Seleniumutil
+from ITAFRepo.Dev.Excel import XLLib
 
 import time
 import datetime
 
 
-class contentmanagement(BasePage):
+class contentmanagementpage(BasePage):
     """
     Base class that all page models can inherit from
     """
 
-    def __init__(self, driver, url, wait_time):
-        super(contentmanagement,self).__init__(driver, url, wait_time)
+    def __init__(self, driver, globaldict, datadict,datadictrownumber):
+        super(contentmanagementpage,self).__init__(driver, globaldict)
+        self.datadict = datadict
+        self.datadictrownumber = datadictrownumber
+        self.rowdict = self.get_testdata_as_dictionary(datadictrownumber,datadict)
 
-    def add_whitepaper(self,rowdict):
+    def verify_page(self):
+
+        self.wait_until_element_is_displayed(*cmgmt_logo)
+
+    def add_whitepaper(self):
         """
-
 
         self.navigate()
         self.wait_until_page_is_displayed(self, *cmgmt_contentmanagement_lnk)
@@ -30,6 +39,7 @@ class contentmanagement(BasePage):
         self.click_element(*cmgmt_WhitePaper_lnk)
 
         """
+        rowdict = self.rowdict
         self.Navigate_to_whitepaper()
         self.click_element(*cmgmt_NewWhitePaper_btn)
         time.sleep(5)
@@ -51,8 +61,6 @@ class contentmanagement(BasePage):
         time.sleep(3)
         self.click_element(*cmgmt_addrelatedproduct_btn)
         time.sleep(3)
-
-
 
         if ((rowdict['Registration']).upper().strip()) == 'LINK DIRECTLY TO A DOCUMENT':
             self.click_element(*cmgmt_registration_link_url_radio)
@@ -135,7 +143,8 @@ class contentmanagement(BasePage):
         self.click_element(*cmgmt_saveandarchive_btn)
 
 
-    def add_file_document_link(self,rowdict):
+    def add_file_document_link(self):
+        rowdict = self.rowdict
         self.click_element(*cmgmt_Addfile_btn)
         time.sleep(10)
         print("filename")
@@ -169,6 +178,7 @@ class contentmanagement(BasePage):
 
 
     def upload_file(self,rowdict):
+        rowdict = self.rowdict
         time.sleep(10)
 
         print(rowdict['Files'].replace('\\', '/'))
@@ -176,14 +186,16 @@ class contentmanagement(BasePage):
         time.sleep(5)
         self.click_element(*cmgmt_closefiles_btn)
 
-    def add_internalemail(self,rowdict):
+    def add_internalemail(self):
+        rowdict = self.rowdict
         self.click_element(*cmgmt_addemail_lnk )
         self.fill_out_field(rowdict['EmailSubject'], *cmgmt_Emailsubject_tbox )
         self.fill_out_field(rowdict['Emailto'], *cmgmt_EmailTo_tbox)
         self.fill_out_field(rowdict['EmailBody'], *cmgmt_EmailBody_tbox)
         self.click_element(*cmgmt_EmailSave_btn)
 
-    def add_whitepaper_description(self,rowdict):
+    def add_whitepaper_description(self):
+        rowdict = self.rowdict
         currwindowhandle = self.driver.current_window_handle
         self.switch_to_iframe(*cmgmt_Description_iframe)
         time.sleep(3)
@@ -194,7 +206,7 @@ class contentmanagement(BasePage):
         self.switch_to_window(currwindowhandle)
 
     def Navigate_to_whitepaper(self):
-        self.navigate()
+        #self.navigate()
         self.wait_until_page_is_displayed(self, *cmgmt_contentmanagement_lnk)
         self.click_element(*cmgmt_contentmanagement_lnk)
         self.click_element(*cmgmt_Document_lnk)
@@ -223,18 +235,13 @@ class contentmanagement(BasePage):
 
 
         tablerows = self.driver.find_elements_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr')
-        print('tablerows')
-        print(len(tablerows))
+
         for row in range(1, (len(tablerows)+1)):
             Title = 'English Name'
             colsxpath = '/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict[
                 Title] + ']'
-            print('row : ' + str(row))
+
             # get English Name
-            print('Column Value : ' + self.driver.find_element_by_xpath(colsxpath).get_attribute('innerHTML'))
-            print('Column Value : ' + (whitepaper).upper().strip())
-            print((self.driver.find_element_by_xpath(colsxpath).get_attribute('innerHTML').upper().strip()) == ((whitepaper).upper().strip()))
-            print(headerrowdict['Live'])
 
             #get the White paper is live details
             if (self.driver.find_element_by_xpath(colsxpath).get_attribute('innerHTML').upper().strip()) == ((whitepaper).upper().strip()):
@@ -242,14 +249,13 @@ class contentmanagement(BasePage):
                 whitepaperdict['Localized Title'] = self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Localized Title'] + ']').get_attribute('innerHTML')
                 whitepaperdict['Language'] = self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Language'] + ']').get_attribute('innerHTML')
                 whitepaperdict['Live'] = self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']').get_attribute('innerHTML')
-                print(headerrowdict['Live'])
-                print('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']/img')
+
                 imagetext = self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']/img').get_attribute('src')
-                print(imagetext)
+
                 # print(driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']').getattributes())
                 if self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']').is_displayed():
                     imagetext = self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']/img').get_attribute('src')
-                    print(imagetext)
+
                     if 'Disabled.gif' in (self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']/img').get_attribute('src')):
                         print("Not yet Live")
                         whitepaperdict['Live'] = 'Draft'
@@ -258,29 +264,25 @@ class contentmanagement(BasePage):
                         print('live')
                         whitepaperdict['Live'] = 'Live'
                         whitepaperdict['LiveLink'] = self.driver.find_element_by_xpath('html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']/a')
-                        self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']/a').click()
+                        #self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']/a').click()
 
                 #get the Last Updated
 
 
                 if self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Live'] + ']').is_displayed():
                     imagetext = self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Preview'] + ']/img').get_attribute('src')
-                    print(imagetext)
+
                     if 'Disabled.gif' in (self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Preview'] + ']/img').get_attribute('src')):
-                        print("Not yet Live")
                         whitepaperdict['Live'] = 'Draft'
                         whitepaperdict['LiveLink'] = None
                     elif 'Checkmark.gif' in (self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Preview'] + ']/img').get_attribute('src')):
-                        print('Preview')
+
                         whitepaperdict['Preview'] = 'Live'
                         whitepaperdict['PreviewLink'] = self.driver.find_element_by_xpath('html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Preview'] + ']/a')
-                        self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Preview'] + ']/a').click()
+                        #self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Preview'] + ']/a').click()
 
                 #get Promted Assets
 
-                    print('Last Updated')
-                    print(self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Last Updated'] + ']').is_displayed())
-                    print(self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Last Updated'] + ']/div').text)
 
                     if self.driver.find_element_by_xpath('/html/body/div[1]/section/div[3]/div[2]/table/tbody/tr[' + str(row) + ']/td[' + headerrowdict['Last Updated'] + ']').is_displayed():
 
@@ -294,8 +296,27 @@ class contentmanagement(BasePage):
 
                 break
 
-        print(whitepaperdict)
+        #print(whitepaperdict)
         return whitepaperdict
+
+    def click_on_whitepaper(self,whitepaper):
+        whitepaperdict = self.get_whitepaper_details(whitepaper)
+        whitepaperdict['LiveLink'].click()
+        time.sleep(5)
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        currentpage_url = self.driver.current_url
+        urlstrings = currentpage_url.split('/')
+        for urlstring in urlstrings:
+            print(urlstring)
+        for i in range(1,len(urlstrings)):
+            print(urlstrings[i])
+        if 'quest.com' in urlstrings[1]:
+            print('Quest Domain')
+        elif 'oneidentity.com' in urlstrings[1]:
+            print('One Identity Domain')
+
+
+
 
 
 

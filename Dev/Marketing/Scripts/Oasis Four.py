@@ -1,8 +1,8 @@
 from selenium import webdriver
 from ITAFRepo.Dev.Utilities import Utillib
 from ITAFRepo.Dev.Marketing.Libs.PageObjectLibrary import contentmanagementpage
-from ITAFRepo.Dev.TestRails import TestRailLibraryExt
-from Poc1.Lib import Utillibfrom ITAFRepo.Dev.Excel import XLLib
+from ITAFRepo.Dev.TestRails import ITAFTestRailLibrary
+from ITAFRepo.Dev.Excel import XLLib
 import time
 
 appurl = "http://stage-o2/v2/Documents/Edit/152/"

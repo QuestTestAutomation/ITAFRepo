@@ -24,53 +24,22 @@ class  utillib():
         globaldict1 = {}
         globaldict1 = globaldict
         self.globaldict1 = globaldict1
-        print('hehu')
-        print(globaldict1)
-        print('hehu')
-        print(globaldict.get('chromedriverpath'))
-        print('hehu')
-        print(self.globaldict1.get('TrialRun'))
-        print('hehu')
-        print(globaldict['TrialRun'])
+
         pass
 
-
-
-    def Hello_World(self):
-        print("Hello World")
-    """
-    
-    @staticmethod
-    def Get_Driver_Handle(self,brow):
-        if brow ==  'ff':
-            driver = webdriver.Firefox()
-         #   driver.get(url)
-        if brow ==  'gc':
-            print("hehu")
-            driver = webdriver.Chrome(executable_path='C:\Drivers\chromedriver.exe')
-           # driver = webdriver.Chrome()
-            #driver.get(url)
-            # driver = webdriver.Remote(command_executor='http://localhost:9515/',desired_capabilities=DesiredCapabilities.CHROME)
-            # driver.get(url)
-        if brow == 'ie':
-            driver = webdriver.Ie()
-        return driver
-        """
-
-    def get_driver_handle(self,browser):
+    def get_driver_handle(self,browser,url):
         if browser == 'ff':
             driver_path = self.globaldict1.get('firefoxdriverpath')
             driver = webdriver.Firefox(executable_path= driver_path)
-        #   driver.get(url)
+            driver.get(url)
         if browser == 'gc':
             driver_path = self.globaldict1.get('chromedriverpath')
-            print('driver_path')
-            print(driver_path)
             driver = webdriver.Chrome(executable_path= driver_path)
-
+            driver.get(url)
         if browser == 'ie':
             driver_path = self.globaldict1.get('IEdriverpath')
             driver = webdriver.Ie(executable_path= driver_path)
+            driver.get(url)
         return driver
 
     @staticmethod
@@ -85,13 +54,13 @@ class  utillib():
         return step
 
     @staticmethod
-    def generate_phonenum(self) :
+    def generate_phonenum() :
         phnum = time.strftime("%d%m%Y%H%M%S")
 
         return phnum
 
     @staticmethod
-    def get_current_date(self):
+    def get_current_date():
         print (time.strftime("%H:%M:%S"))
 
         ## 12 hour format ##
@@ -108,7 +77,7 @@ class  utillib():
         return dttime
 
     @staticmethod
-    def get_current_date_time(self):
+    def get_current_date_time():
         print (time.strftime("%H:%M:%S"))
 
         ## 12 hour format ##

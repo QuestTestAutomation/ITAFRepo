@@ -1,5 +1,12 @@
 from guerrillamail import GuerrillaMailSession
 from guerrillamail import *
+from ITAFRepo.Dev.Guerrillamail import Guerillamaillib
+
+#gumaillib = Guerillamaillib.guerillamaillib()
+#print(guerillamaillib.get_temporary_email())
+#print(gumaillib.set_temporary_email('anumolu'))
+
+
 
 session = GuerrillaMailSession()
 session.set_email_address('sanumolu')
@@ -12,4 +19,5 @@ for email in emaillist:
     emailattr = session.get_email(email.guid)
     print(emailattr.sender)
     print(emailattr.body)
+
 

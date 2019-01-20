@@ -48,7 +48,7 @@ cmgmt_SelectFiles_btn = (By.XPATH,'//*[@id="FileUploaderKendoPanel_wnd_title"]]'
 cmgmt_SelectFiles_tbox = (By.XPATH,'//*[@id="_files_kendo"]')
 #cmgmt_uploaddocument = (By.ID,'FileUploaderKendoPanel')
 cmgmt_closefiles_btn = (By.XPATH,'//*[@id="_closefileuploaderkendo"]')
-cmgmt_saveandarchive_btn = (By.CSS_SELECTOR,'#btn_Save')
+cmgmt_saveandarchive_btn = (By.XPATH,'//input[@id="btn_Save"][@value="Save & Preview"]')
 cmgmt_publish_btn = (By.XPATH,'//input[@type="submit"][@id="btn_Publish"][@value="Publish Live"]')
 cmgmt_archive_btn = (By.XPATH,'//input[@type="submit"][@id="btn_Archive"][@value="Archive"]')
 cmgmt_Marketingintrest_sel = (By.ID,'AssetCodeProductId')
@@ -70,6 +70,28 @@ cmgmt_EmailTo_tbox = (By.CSS_SELECTOR,'#tbxInternalEmailTo')
 cmgmt_EmailBody_tbox = (By.XPATH,'//*[@id="tbxInternalEmailBody"]')
 cmgmt_EmailSave_btn = (By.XPATH,'//input[@type="button"][@id="btnInternalEmailSave"][@value="Save"]')
 cmgmt_EmailCancel_btn = (By.XPATH,'//input[@type="button"][@id="btnInternalEmailCancel"][@value="Cancel"]')
+cmgmt_logo = (By.CLASS_NAME,'logo-container')
+
+"""
+****************************************************************************************************
+**The below section details the locators for the Download Whitepaper Page.
+*****************************************************************************************************
+"""
+# White paper lead registration
+whitepaper_logo = (By.CLASS_NAME,'navbar-brand')
+whitepaper_firstname_tbox = (By.ID,'FirstName')
+whitepaper_lastname_tbox = (By.ID,'LastName')
+whitepaper_company_tbox = (By.ID,'Company')
+whitepaper_email_tbox = (By.ID,'Email')
+whitepaper_jobtitle_sel = (By.ID,'Title')
+whitepaper_downloadwhitepaper_btn = (By.XPATH,'//input[@type="submit"][@value="Download White Paper"]')
+whitepaper_Country_sel = (By.ID,'CountryCode')
+whitepaper_state_sel = (By.ID,'State_Province')
+whitepaper_companysize_sel = (By.ID,'EmployeeCount')
+whitepaper_city_tbox = (By.ID,'City')
+whitepaper_postalcode_tbox = (By.ID,'PostalCode')
+whitepaper_phone_tbox = (By.ID,'Phone')
+
 
 
 

@@ -19,8 +19,15 @@ class XLLib():
         #exceptionlib = ExceptionLib.ExceptionLib()
         pass
 
-    def pri(self):
+    #@staticmethod
+    def pri(self,mello):
         print("Hello World")
+        print(mello)
+        print(inspect.stack()[0][3])
+
+    def pri_new(self,mello):
+        print("Hello World new")
+        print(mello)
         print(inspect.stack()[0][3])
 
     def create_workbook(self,file, sheetname):
@@ -42,7 +49,7 @@ class XLLib():
             mywb.save(file)
             time.sleep(5)
         except Exception as e:
-            HandleException(str(e), 'create_workbook')
+           HandleException.handle_exception(str(e), 'create_workbook')
 
     def create_worksheets(self,file, sheetnames):
         try :
@@ -62,7 +69,7 @@ class XLLib():
                 mywb = Workbook()
                 time.sleep(10)
         except Exception as e:
-            HandleException(str(e),'create_worksheets')
+           HandleException.handle_exception(str(e),'create_worksheets')
 
     def print_XL_cell_values(self,file, sheetname, irow, icolumn):
         try :
@@ -76,7 +83,7 @@ class XLLib():
                     if mysheet.cell(column=col, row=row).value != 'None':
                         print(mysheet.cell(column=col, row=row).value)
         except Exception as e:
-            HandleException(str(e), 'print_XL_cell_values')
+           HandleException.handle_exception(str(e), 'print_XL_cell_values')
 
     def get_xl_cell_values(self, file, sheetname, irow, icolumn):
         try :
@@ -90,7 +97,7 @@ class XLLib():
                         cellvalues.append(mysheet.cell(column=col, row=row).value)
             return cellvalues
         except Exception as e:
-            HandleException(str(e), 'get_xl_cell_values')
+           HandleException.handle_exception(str(e), 'get_xl_cell_values')
 
     def get_xl_column_letter(self,file, sheetname, columnvalue):
         try:
@@ -104,7 +111,7 @@ class XLLib():
                     break
             return id
         except Exception as e:
-            HandleException(str(e), 'get_xl_column_letter')
+           HandleException.handle_exception(str(e), 'get_xl_column_letter')
 
     def get_xl_column_index(self,file, sheetname, columnvalue):
         try :
@@ -123,7 +130,7 @@ class XLLib():
                     break
             return id
         except Exception as e:
-            HandleException(str(e), 'get_xl_column_index')
+           HandleException.handle_exception(str(e), 'get_xl_column_index')
 
     def get_xl_cell_value(self,file, sheetname, irow, icolumn):
         try :
@@ -134,22 +141,22 @@ class XLLib():
             id = mysheet.cell(column=icolumn, row=irow).value
             return id
         except Exception as e:
-            HandleException(str(e), 'get_xl_cell_value')
+           HandleException.handle_exception(str(e), 'get_xl_cell_value')
 
 
     def get_xl_cell_value_using_column_header(self,file, sheetname, irow, columnheader):
         try :
 
-            id = '0'
+            headerid = '0'
             mywb = load_workbook(file)
             mysheet = mywb[sheetname]
-            icolumn = XLLib.get_xl_column_index(XLLibp3, file, sheetname, columnheader)
-            print("The Column is : " + str(icolumn))
-            id = mysheet.cell(column=int(icolumn), row=irow).value
-            id = str(id).strip()
+            icolumn = self.get_xl_column_index(file, sheetname, columnheader)
+            #print("The Column is : " + str(icolumn))
+            headerid = mysheet.cell(column=int(icolumn), row=irow).value
+            headerid = str(id).strip()
             return id
         except Exception as e:
-            HandleException(str(e), 'get_xl_cell_value_using_column_header')
+           HandleException.handle_exception(str(e), 'get_xl_cell_value_using_column_header')
 
     def set_xl_cell_value(self,file, sheetname, irow, icolumn, cellvalue):
         try :
@@ -161,7 +168,7 @@ class XLLib():
             mywb.save(file)
             time.sleep(5)
         except Exception as e:
-            HandleException(str(e), 'set_xl_cell_value')
+           HandleException.handle_exception(str(e), 'set_xl_cell_value')
 
     def set_xl_cell_value_using_column_header(self,file, sheetname, irow, columnheader, cellvalue):
         try :
@@ -174,7 +181,7 @@ class XLLib():
             mywb.save(file)
             time.sleep(5)
         except Exception as e:
-            HandleException(str(e), 'set_xl_cell_value_using_column_header')
+           HandleException.handle_exception(str(e), 'set_xl_cell_value_using_column_header')
 
     def create_xl_header_lists(self,file, sheetname, lists):
         try :
@@ -188,7 +195,7 @@ class XLLib():
             mywb.save(file)
             time.sleep(5)
         except Exception as e:
-            HandleException(str(e), 'create_xl_header_lists')
+           HandleException.handle_exception(str(e), 'create_xl_header_lists')
 
     def add_xl_header_column(self,file, sheetname, columnheader):
         try :
@@ -201,7 +208,7 @@ class XLLib():
             mywb.save(file)
             time.sleep(5)
         except Exception as e:
-            HandleException(str(e), 'add_xl_header_column')
+           HandleException.handle_exception(str(e), 'add_xl_header_column')
 
 
     def copy_xl_workbook(self,sourcefile, targetfile):
@@ -231,7 +238,7 @@ class XLLib():
                     mywb.save(targetfile)
                     time.sleep(5)
         except Exception as e:
-            HandleException(str(e), 'copy_xl_workbook')
+           HandleException.handle_exception(str(e), 'copy_xl_workbook')
 
     def get_xl_row_count(self,file, sheetname):
         try :
@@ -241,7 +248,7 @@ class XLLib():
             id = mysheet.max_row
             return id
         except Exception as e:
-            HandleException(str(e), 'get_xl_row_count')
+           HandleException.handle_exception(str(e), 'get_xl_row_count')
 
     def get_XL_column_count(self,file, sheetname):
         try :
@@ -252,7 +259,7 @@ class XLLib():
 
             return id
         except Exception as e:
-            HandleException(str(e), 'get_XL_column_count')
+           HandleException.handle_exception(str(e), 'get_XL_column_count')
 
     def load_xl_cell_values_dictionary(self, file, sheetname):
         try :
@@ -261,13 +268,13 @@ class XLLib():
             mywb = load_workbook(file)
             mysheet = mywb[sheetname]
 
-            for row in range(1, mysheet.max_row):
+            for row in range(1, int(mysheet.max_row + 1)):
                 column = []
                 #print("my max column")
                 #print(mysheet.max_column)
                 #max_column = int(mysheet.max_column) + 1
                 #print(max_column)
-                for col in range(1, mysheet.max_column):
+                for col in range(1, int(mysheet.max_column + 1)):
                     if mysheet.cell(column=col, row=row).value != 'None':
                         #print(col)
                         #print(mysheet.cell(column=col, row=row).value)
@@ -278,8 +285,9 @@ class XLLib():
 
             return tabledict
         except Exception as e:
-            HandleException(str(e), 'load_xl_cell_values_dictionary')
+            HandleException.handle_exception(str(e), 'load_xl_cell_values_dictionary')
             print('Exception')
+
 
     def get_table_row_as_dictionary(self,row,tabledictionary):
         try:
@@ -291,7 +299,7 @@ class XLLib():
             print(rowdict)
             return rowdict
         except Exception as e:
-            HandleException(str(e), 'get_table_row_as_dictionary')
+           HandleException.handle_exception(str(e), 'get_table_row_as_dictionary')
 
     def get_excel_row_as_dictionary(self,file,sheetname,row):
         try:
@@ -300,7 +308,7 @@ class XLLib():
 
             return rowdict
         except Exception as e:
-            HandleException(str(e), 'get_excel_row_as_dictionary')
+           HandleException.handle_exception(str(e), 'get_excel_row_as_dictionary')
 
     def get_xl_header_as_tuple(self, file, sheetname):
         try :
@@ -319,4 +327,33 @@ class XLLib():
 
             return tuple(columnlist)
         except Exception as e:
-            HandleException(str(e), 'get_xl_header_as_tuple')
+           HandleException.handle_exception(str(e), 'get_xl_header_as_tuple')
+
+    def load_xl_cell_values_testrail_dictionary(self, file, sheetname):
+       try:
+           testcaseid = None
+           tabledict = {}
+           mywb = load_workbook(file)
+           mysheet = mywb[sheetname]
+
+           for row in range(1, int(mysheet.max_row + 1)):
+               column = []
+               # print("my max column")
+               # print(mysheet.max_column)
+               # max_column = int(mysheet.max_column) + 1
+               # print(max_column)
+               for col in range(1, int(mysheet.max_column + 1)):
+                   if col == 1 and mysheet.cell(column=col, row=row).value != 'None':
+                       testcaseid = str(mysheet.cell(column=col, row=row).value)
+                   if mysheet.cell(column=col, row=row).value != 'None':
+                       # print(col)
+                       # print(mysheet.cell(column=col, row=row).value)
+                       column.append(str(mysheet.cell(column=col, row=row).value))
+                   else:
+                       column.append('None')
+               tabledict[str(testcaseid)] = column
+
+           return tabledict
+       except Exception as e:
+           HandleException.handle_exception(str(e), 'load_xl_cell_values_dictionary')
+           print('Exception')

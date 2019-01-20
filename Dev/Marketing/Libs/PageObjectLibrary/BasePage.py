@@ -5,23 +5,26 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from ITAFRepo.Dev.Utilities import Seleniumutil
+from ITAFRepo.Dev.Utilities import Utillib
+from ITAFRepo.Dev.Utilities.ExceptionLib import *
 
 import time
 import datetime
 
 
-class BasePage(object):
+class BasePage(Seleniumutil.Seleniumutil):
     """
     Base class that all page models can inherit from
     """
     #appurl = "http://stage-o2/"
 
-    def __init__(self, selenium_driver,url,wait_time):
-        self.driver = selenium_driver
-        self.url = url
-        self.timeout = wait_time
-        self.verify_page(self)
-
+    def __init__(self, driver,globaldict):
+        super(BasePage, self).__init__(driver, globaldict)
+        self.utillib = Utillib.utillib(globaldict)
+        self.verify_page()
+    """
+    
     def find_element(self, *loc):
         return self.driver.find_element(*loc)
 
@@ -35,14 +38,28 @@ class BasePage(object):
 
     def navigate(self):
         self.driver.get(self.url)
+    """
 
-    @staticmethod
     def verify_page(self):
         """
         This method verifies the page is loaded
         :return:
         """
 
+
+    def get_testdata_as_dictionary(self,row,tabledictionary):
+        try:
+            rowdict = {}
+
+            for index in range(len(tabledictionary[str(1)])):
+
+                rowdict[tabledictionary[str(1)][index]] = tabledictionary[str(row)][index]
+            print(rowdict)
+            return rowdict
+        except Exception as e:
+           HandleException.handle_exception(str(e), 'get_testdata_as_dictionary')
+
+    """
     def wait_until_element_is_displayed(self,*loc):
 
         if(loc[0]) == 'link text':
@@ -103,6 +120,7 @@ class BasePage(object):
     def switch_back_to_mainwindow(self):
         self.driver.switch_to.default_content
 
+   """
     """
     
     def find_element(self,locatormode,locator):
@@ -123,7 +141,7 @@ class BasePage(object):
         else:
             raise Exception("unsupported locator exception")
         return element
-    """
+    
     def fill_out_field(self,value,*loc):
         self.wait_until_element_is_displayed(*loc)
         element = self.find_element(*loc)
@@ -187,7 +205,7 @@ class BasePage(object):
                 if (option.text).upper() == (listvalue).upper():
                     selelement.select_by_value(option.get_attribute('value'))
                     time.sleep(5)
-
+        """
 
 
 

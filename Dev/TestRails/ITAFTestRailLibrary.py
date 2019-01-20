@@ -428,3 +428,6 @@ class TestRailLibraryExt:
             testresult
         )
         return result
+
+    def add_custom_test_result_step(self,result,step,actualresult,expectedresult,):
+        pass

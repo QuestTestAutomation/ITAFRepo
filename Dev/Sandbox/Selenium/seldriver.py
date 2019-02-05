@@ -3,17 +3,19 @@ from ITAFRepo.Dev.Utilities import Utillib
 from ITAFRepo.Dev.Utilities import InitializeITAF
 from ITAFRepo.Dev.Utilities import Seleniumutil
 from ITAFRepo.Dev.Siebel import Souilib
+from ITAFRepo.Dev.Siebel import SiebelLib
 from ITAFRepo.Dev.Excel import XLLib
+
 import time
 browser = 'gc'
 url = 'http://siebeluat.prod.quest.corp/dbsupport_enu/start.swe?SWECmd=AutoOn'
 suser ='SUPPORT_ADMIN'
 spassword = 'SUPPORT_ADMIN'
 Variablesfile  = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Resources/ITAFParameters.cfg'
-runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/RunManager_Service.xlsx'
-runmanagersheet = 'Runsheet'
-testdatafile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/DataBank_Service.xlsx'
-testdatasheet = 'Datasheet'
+runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Servic/RunManager_Service.xlsx'
+runmanagersheet = 'RunManager'
+testdatafile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/DataBank_Service.xlsx'
+testdatasheet = 'DataBank'
 iniittaf = InitializeITAF.initializeITAF()
 globaldict = iniittaf.set_global_dictionary(Variablesfile)
 print('globaldict')
@@ -25,9 +27,27 @@ print('Datadict')
 print(datadict)
 print('Rundict')
 print(rundict)
-
+datarow = 1
+rowdict = xllib.get_table_row_as_dictionary(datarow, datadict)
+print('Rowdict')
+print(rowdict)
 utillib = Utillib.utillib(globaldict)
-driver = utillib.get_driver_handle(browser)
+driver = utillib.get_driver_handle(browser,url)
+seleniumutil = Seleniumutil.Seleniumutil(driver,globaldict)
+osouilib = Souilib.Souilib(driver,globaldict,url)
+sblib = SiebelLib.siebellib(driver, globaldict, url,datadict, rundict,rowdict)
+osouilib.Login_lite(url,suser,spassword)
+sblib.create_sr()
+sblib.update_SR_substatus('Assigned')
+sblib.update_sr_status('Deleted')
+#sblib.query_contact()
+#recordcount = osouilib.get_record_count()
+
+
+
+
+
+
 
 """
 

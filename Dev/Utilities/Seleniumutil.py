@@ -38,10 +38,11 @@ class Seleniumutil(object):
 
     def fill_form_by_id(self, form_element_id, value):
         return self.fill_form_by_css('#%s' % form_element_id, value)
-
+    """
+    
     def navigate(self):
         self.driver.get(self.url)
-
+    """
 
 
     def wait_until_element_is_displayed(self, *loc):
@@ -189,6 +190,9 @@ class Seleniumutil(object):
 
     def send_keyboard_keys(self,keyvalue):
         self.driver.find_element_by_tag_name('body').send_keys(keyvalue)
+
+    def get_webpage_url(self):
+        return self.driver.current_url
 
 class Incorrectpageexception(Exception):
     """

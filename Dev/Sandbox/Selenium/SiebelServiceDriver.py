@@ -10,7 +10,7 @@ from ITAFRepo.Dev.Marketing.Libs import MarketingLib
 from ITAFRepo.Dev.TestRails import ITAFTestRailLibrary
 
 import time
-browser = 'ff'
+browser = 'gc'
 url = 'http://stage-o2/v2/Documents/Edit/152/'
 suser ='SUPPORT_ADMIN'
 spassword = 'SUPPORT_ADMIN'

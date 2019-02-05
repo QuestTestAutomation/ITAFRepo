@@ -227,6 +227,31 @@ class Souilib(Seleniumutil.Seleniumutil):
         ActionChains(self.driver).send_keys(Keys.CONTROL, "S").perform()
         time.sleep(3)
 
+
+
+    def get_record_count(self):
+        recordcount = 0
+        ActionChains(self.driver).send_keys(Keys.CONTROL,Keys.SHIFT, "3").perform()
+        time.sleep(3)
+        for i in range(1,20):
+            elements = self.driver.find_elements_by_xpath('*//div[@aria-label="Record Count"]')
+            if len(elements) == 1:
+                print('Record Count is : ')
+                print(self.driver.find_element_by_xpath('*//div[@aria-label="Record Count"]').text)
+                recordcount = self.driver.find_element_by_xpath('*//div[@aria-label="Record Count"]').text
+                self.click_button('OK','1')
+                print('rev**')
+                print(recordcount)
+
+            elif len(elements) == 0:
+                time.sleep(10)
+
+            if not recordcount == '0':
+                break
+        print('__recordcount')
+        print(recordcount)
+        return recordcount
+
     def send_element_keyboard_tab(self,element):
         element.send_keys(Keys.TAB)
         time.sleep(3)
@@ -234,7 +259,25 @@ class Souilib(Seleniumutil.Seleniumutil):
     def drilldown_on_list_applet_column(self, columnlabel, appletindex, columnindex,rownumber):
         try:
             columnid = rownumber + self.get_list_applet_column_id(columnlabel, appletindex, columnindex)
+            print('columnid')
+            print(columnid)
+            elementxpath = '//*[@id="' + columnid + '"]/a'
+            print(elementxpath)
+            print(str(len(self.driver.find_elements_by_xpath(elementxpath))))
+            #self.driver.find_element_by_id(columnid).click()
+            self.driver.find_element_by_xpath(elementxpath).click()
+
+
+        except:
+            errmsg = 'Error while executing the function drilldown_on_list_applet_column'
+
+    def click_on_list_applet_column(self, columnlabel, appletindex, columnindex,rownumber):
+        try:
+            columnid = rownumber + self.get_list_applet_column_id(columnlabel, appletindex, columnindex)
+
             self.driver.find_element_by_id(columnid).click()
+
+
 
         except:
             errmsg = 'Error while executing the function drilldown_on_list_applet_column'
@@ -315,12 +358,17 @@ class Souilib(Seleniumutil.Seleniumutil):
         self.driver.find_element_by_xpath(formfieldname).send_keys(forminputvalue)
         self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)
 
-    def set_form_applet_textarea_value(self,formfieldlabel,forminputvalue):
+    def get_form_applet_input_value(self,formfieldlabel):
+        formfieldname = '//input[@name="' + self.get_form_field_name(formfieldlabel) + '"]'
+        print('**' + formfieldname)
+        return self.driver.find_element_by_xpath(formfieldname).get_attribute('value')
+
+
+    def get_form_applet_textarea_value(self,formfieldlabel):
         formfieldname = '//textarea[@name="' + self.get_form_textarea_name(formfieldlabel) + '"]'
         print('**' + formfieldname)
-        self.driver.find_element_by_xpath(formfieldname).click()
-        self.driver.find_element_by_xpath(formfieldname).send_keys(forminputvalue)
-        self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)
+        return self.driver.find_element_by_xpath(formfieldname).get_attribute('value')
+
 
     def select_form_applet_input_value(self,formfieldlabel,forminputvalue):
         formfieldname = '//input[@name="' + self.get_form_field_name(formfieldlabel) + '"]'
@@ -437,3 +485,10 @@ class Souilib(Seleniumutil.Seleniumutil):
         if hscroll:
             print('I am in scroll')
             self.driver.execute_script("arguments[0].scrollIntoView()",hscroll)
+
+    def select_personalized_view(self,view):
+        loc = (By.CSS_SELECTOR,'#s_vis_div')
+        self.select_dropdown_value(view,*loc)
+
+
+

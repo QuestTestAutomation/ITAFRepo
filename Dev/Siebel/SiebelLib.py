@@ -123,7 +123,7 @@ class siebellib(Souilib.Souilib):
             print('Entitlement verification has failed. The SLA Expiry time in Siebel is ' + SLAExpriyTimeActual + '. The calculated SLA Expiry time is ' + SLAExpriyTimeCalculated + ' .')
         #self.click_sitemap()
         result = {}
-        result['actual'] = 'The Sr' + SR + 'is created.'
+        result['actual'] = 'The Sr ' + SR + ' is created. The Entitlement verification has failed. The SLA Expiry time in Siebel is ' + SLAExpriyTimeActual + '. The calculated SLA Expiry time is ' + SLAExpriyTimeCalculated + ' .'
         result['status_id'] = '1'
         return result
 

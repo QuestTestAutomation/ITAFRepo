@@ -32,10 +32,17 @@ class Souilib(Seleniumutil.Seleniumutil):
     def Login_lite(self,url,user,password):
 
         try:
+            #self.launch_url('www.google.com')
             self.launch_url(url)
             time.sleep(5)
-            self.fill_out_field('SUPPORT_ADMIN', *(By.ID, 's_swepi_1'))
-            self.fill_out_field('SUPPORT_ADMIN', *(By.ID, 's_swepi_2'))
+            self.wait_until_element_is_displayed(*(By.ID, 's_swepi_1'))
+
+            #self.fill_out_field(user, *(By.ID, 's_swepi_1'))
+            self.fill_out_field(user, *(By.XPATH, '//input[@name="SWEUserName"][@title="User ID"]'))
+
+            time.sleep(3)
+            self.fill_out_field(password, *(By.ID, 's_swepi_2'))
+            self.fill_out_field(user, *(By.XPATH, '//input[@name="SWEUserName"][@title="User ID"]'))
             self.click_element(*(By.XPATH, '//*[@id="s_swepi_22"]'))
             self.open_ui_sync()
             #time.sleep(30)
@@ -44,6 +51,31 @@ class Souilib(Seleniumutil.Seleniumutil):
             errmsg = 'Error while executing the function Login_lite'
             print(errmsg)
 
+
+    def Logout(self):
+
+        try:
+           # ActionChains(self.driver).send_keys(Keys.CONTROL,Keys.SHIFT, "X").perform()
+            time.sleep(3)
+            print('&&&&& Logout')
+
+            self.click_element(*(By.XPATH, '//*[@id="s_0"]/li[1]/a/span'))
+            self.open_ui_sync()
+            time.sleep(3)
+            self.wait_until_element_is_displayed(*(By.LINK_TEXT, 'Log Out [Ctrl+Shift+X]'))
+            self.driver.find_element_by_link_text('Log Out [Ctrl+Shift+X]').click()
+            #self.click_element(*(By.XPATH, '//*[@id="ui-id-30"]'))
+            self.open_ui_sync()
+            self. wait_until_element_is_displayed(*(By.ID, 's_swepi_1'))
+
+            #self.driver.find_element_by_link_text('Log Out[Ctrl+Shift+X]').click()
+
+            #time.sleep(30)
+            #self.click_sitemap()
+
+        except:
+            errmsg = 'Error while executing the function Login_lite'
+            print(errmsg)
 
     def click_sitemap(self):
         try:
@@ -356,7 +388,7 @@ class Souilib(Seleniumutil.Seleniumutil):
         print('**' + formfieldname)
         self.driver.find_element_by_xpath(formfieldname).click()
         self.driver.find_element_by_xpath(formfieldname).send_keys(forminputvalue)
-        self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)
+#        self.driver.find_element_by_xpath(formfieldname).send_keys(Keys.TAB)
 
     def get_form_applet_input_value(self,formfieldlabel):
         formfieldname = '//input[@name="' + self.get_form_field_name(formfieldlabel) + '"]'

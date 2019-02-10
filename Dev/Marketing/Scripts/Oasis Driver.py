@@ -40,7 +40,7 @@ utillib = Utillib.utillib(globaldict)
 driver = utillib.get_driver_handle(browser,url)
 
 marketinglib = MarketingLib.MarketingLib(driver,globaldict)
-
+resultsdirectory = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Results/Siebel Service'
 
 
 for row in range(2,(int(xllib.get_xl_row_count(runmanagerfile,runmanagersheet) + 1))):

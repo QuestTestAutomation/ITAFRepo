@@ -1,0 +1,5 @@
+Follow instructions in Link https://developers.google.com/gmail/api/quickstart/python
+
+1) Configure the Gmail Client
+2) Run Quick Start .py
+3) Copy gmailapilib.py and then run the script.

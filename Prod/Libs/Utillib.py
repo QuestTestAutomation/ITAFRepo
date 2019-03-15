@@ -2,8 +2,8 @@
 import time
 import datetime
 import os
-from ITAFRepo.Dev.Excel import XLLib
-from ITAFRepo.Dev.Utilities.ExceptionLib import *
+from ITAFRepo.Prod.Libs import XLLib
+from ITAFRepo.Prod.Libs.ExceptionLib import *
 
 import logging
 from selenium import webdriver

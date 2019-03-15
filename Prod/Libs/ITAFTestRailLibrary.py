@@ -1,4 +1,4 @@
-from ITAFRepo.Dev.TestRails.testrail import APIClient
+from ITAFRepo.Prod.Libs.testrail import APIClient
 from ITAFRepo.Dev.TestRails.TestRailLibrary import TestRailLibrary
 
 import string

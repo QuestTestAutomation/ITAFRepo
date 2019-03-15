@@ -27,7 +27,7 @@ print('globaldict')
 print(globaldict)
 tlibe = ITAFTestRailLibrary.TestRailLibraryExt(globaldict['TestRailURL'], globaldict['TestRailUser'], globaldict['TestRailPassword'])
 trailproject = 'MS Patching'
-trailrun = 'Test Run 2/9/2019 - Automation POC'
+trailrun = 'MS Patching 2/15/2019'
 trailrunid = tlibe.Get_TestRail_RunID(tlibe,trailproject ,trailrun)
 print('trailrunid' + str(trailrunid))
 xllib = XLLib.XLLib()

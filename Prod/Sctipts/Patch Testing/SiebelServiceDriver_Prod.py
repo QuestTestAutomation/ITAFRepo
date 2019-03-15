@@ -1,24 +1,19 @@
-from selenium import webdriver
-from ITAFRepo.Dev.Utilities import Utillib
-from ITAFRepo.Dev.Utilities import InitializeITAF
-from ITAFRepo.Dev.Utilities import Seleniumutil
-from ITAFRepo.Dev.Siebel import Souilib
-from ITAFRepo.Dev.Excel import XLLib
-from ITAFRepo.Dev.Utilities import Seleniumutil
-from ITAFRepo.Dev.Marketing.Libs.PageObjectLibrary import *
-from ITAFRepo.Dev.Marketing.Libs import MarketingLib
-from ITAFRepo.Dev.TestRails import ITAFTestRailLibrary
-from ITAFRepo.Dev.Siebel import Siebelservicelib
+
+from ITAFRepo.Prod.Libs import Utillib
+from ITAFRepo.Prod.Libs import InitializeITAF
+from ITAFRepo.Prod.Libs import XLLib
+from ITAFRepo.Prod.Libs import ITAFTestRailLibrary
+from ITAFRepo.Prod.Libs import Siebelservicelib
 
 import time
 browser = 'gc'
 url = 'http://google.co.in'
 suser ='SUPPORT_ADMIN'
 spassword = 'SUPPORT_ADMIN'
-Variablesfile  = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Resources/ITAFParameters.cfg'
-runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/RunManager_Service v1.0 temp.xlsx'
+Variablesfile  = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Prod/Files/ITAFParameters.cfg'
+runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Prod/Files/Siebel Service/ITAF_RunManager_Service_MS_Patch.xlsx'
 runmanagersheet = 'RunManager'
-databankfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/ITAF_DataBank_Service Temp.xlsx'
+databankfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Prod/Files/Siebel Service/ITAF_DataBank_Service_MSPatch.xlsx'
 trresultdict = {}
 
 iniittaf = InitializeITAF.initializeITAF()
@@ -26,8 +21,8 @@ globaldict = iniittaf.set_global_dictionary(Variablesfile)
 print('globaldict')
 print(globaldict)
 tlibe = ITAFTestRailLibrary.TestRailLibraryExt(globaldict['TestRailURL'], globaldict['TestRailUser'], globaldict['TestRailPassword'])
-trailproject = 'Siebel'
-trailrun = 'Regression Automation POC'
+trailproject = 'MS Patching'
+trailrun = 'MS Patching 2/15/2019'
 trailrunid = tlibe.Get_TestRail_RunID(tlibe,trailproject ,trailrun)
 print('trailrunid' + str(trailrunid))
 xllib = XLLib.XLLib()
@@ -41,9 +36,6 @@ utillib = Utillib.utillib(globaldict)
 driver = utillib.get_driver_handle(browser,url)
 rundicttemp = {}
 #siebelservicelib = Siebelservicelib.Siebelservicelib(driver,globaldict,url,rundicttemp)
-textresultsfolder = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/Results/'
-textresultsfile =  textresultsfolder + 'SiebelService_' + str(utillib.get_current_date_time()) + '.txt'
-resultsfile = open(textresultsfile, 'x')
 
 for row in range(2,(int(xllib.get_xl_row_count(runmanagerfile,runmanagersheet) + 1))):
     #print('row ')
@@ -106,10 +98,8 @@ for row in range(2,(int(xllib.get_xl_row_count(runmanagerfile,runmanagersheet) +
                     "custom_step_results": customresultsdictlist
 
                 }
-
                 trurlstring = "add_result_for_case/" + str(trailrunid) + "/" + str(trailscaseid)
                 tlibe.Add_Result_To_TestRail_Case_details(trailproject, trailrun, trailscaseid, result)
-                resultsfile.write(str(customresultsdictlist))
                 time.sleep(10)
                 break
 

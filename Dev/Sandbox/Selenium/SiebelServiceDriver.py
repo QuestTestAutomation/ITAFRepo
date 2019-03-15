@@ -44,7 +44,8 @@ rundicttemp = {}
 textresultsfolder = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/Results/'
 textresultsfile =  textresultsfolder + 'SiebelService_' + str(utillib.get_current_date_time()) + '.txt'
 resultsfile = open(textresultsfile, 'x')
-
+srtextresultsfile =  textresultsfolder + 'SiebelService_' + str(utillib.get_current_date_time()) + '_sr.txt'
+srresultsfile = open(srtextresultsfile, 'x')
 for row in range(2,(int(xllib.get_xl_row_count(runmanagerfile,runmanagersheet) + 1))):
     #print('row ')
     #print(str(row))

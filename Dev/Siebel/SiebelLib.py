@@ -92,11 +92,21 @@ class siebellib(Souilib.Souilib):
         if not Asset == None:
             self.set_list_applet_column_value('End User Asset #', '1', '1', '1', Asset)
             time.sleep(3)
-            self.send_keyboard_keys(Keys.ESCAPE)
+            self.send_keyboard_keys(Keys.TAB)
+
+            self.open_ui_sync()
+            time.sleep(8)
+            elements = self.driver.find_elements_by_xpath('//*[@aria-label="Pick Asset:OK"]')
+            if len(elements) == 1:
+                print('&&&&&&&&&&&&&&&&&&&&&&&&&&&& I found popup')
+                self.driver.find_element_by_xpath('//*[@aria-label="Pick Asset:OK"]').click()
+                self.open_ui_sync()
+                time.sleep(3)
+       
         self.save_record()
         time.sleep(3)
         self.open_ui_sync()
-        time.sleep(3)
+        time.sleep(8)
         SR = self.get_list_applet_column_value('SR #','1','1','1')
         print(SR)
         self.click_on_list_applet_column('Summary','1','1','1')

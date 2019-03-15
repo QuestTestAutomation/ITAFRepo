@@ -193,6 +193,7 @@ class Souilib(Seleniumutil.Seleniumutil):
                             if (int(colindex)) == int(columnindex):
                                 columnid = column.get_attribute('id')
                                 columnid = columnid[4:]
+                                print('+++++++ Column Id ' + columnid)
 
                                 break
             return columnid

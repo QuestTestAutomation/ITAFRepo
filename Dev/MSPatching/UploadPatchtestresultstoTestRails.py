@@ -1,6 +1,6 @@
-from ITAFRepo.Dev.TestRails import ITAFTestRailLibrary
-from ITAFRepo.Dev.Utilities import Utillib
-from ITAFRepo.Dev.Excel import XLLib
+from Dev.TestRails import ITAFTestRailLibrary
+from Dev.Utilities import Utillib
+from Dev.Excel import XLLib
 
 ResultsFile = "C:/Users/sanumolu/Documents/PatchResults/Consolidated Patch Testing Results 15Mar2019.xlsx"
 TestRailURL = 'https://tr.labs.quest.com/testrail/'

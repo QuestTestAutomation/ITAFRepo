@@ -6,7 +6,7 @@ from Dev.Siebel import Souilib
 from Dev.Excel import XLLib
 from Dev.Utilities import Seleniumutil
 from Dev.Marketing.Libs.PageObjectLibrary import *
-from Dev.Marketing.Libs import MarketingLib
+#from Dev.Marketing.Libs import MarketingLib
 from Dev.TestRails import ITAFTestRailLibrary
 from Dev.Siebel import Siebelservicelib
 
@@ -28,7 +28,7 @@ print('globaldict')
 print(globaldict)
 tlibe = ITAFTestRailLibrary.TestRailLibraryExt(globaldict['TestRailURL'], globaldict['TestRailUser'], globaldict['TestRailPassword'])
 trailproject = 'MS Patching'
-trailrun = 'MS Patching 2/15/2019'
+trailrun = 'MS Patching 3/16/2019'
 trailrunid = tlibe.Get_TestRail_RunID(tlibe,trailproject ,trailrun)
 print('trailrunid' + str(trailrunid))
 xllib = XLLib.XLLib()

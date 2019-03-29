@@ -1,14 +1,14 @@
 from selenium import webdriver
-from ITAFRepo.Dev.Utilities import Utillib
-from ITAFRepo.Dev.Utilities import InitializeITAF
-from ITAFRepo.Dev.Utilities import Seleniumutil
-from ITAFRepo.Dev.Siebel import Souilib
-from ITAFRepo.Dev.Excel import XLLib
-from ITAFRepo.Dev.Utilities import Seleniumutil
-from ITAFRepo.Dev.Marketing.Libs.PageObjectLibrary import *
-from ITAFRepo.Dev.Marketing.Libs import MarketingLib
-from ITAFRepo.Dev.TestRails import ITAFTestRailLibrary
-from ITAFRepo.Dev.Siebel import Siebelservicelib
+from Dev.Utilities import Utillib
+from Dev.Utilities import InitializeITAF
+from Dev.Utilities import Seleniumutil
+from Dev.Siebel import Souilib
+from Dev.Excel import XLLib
+from Dev.Utilities import Seleniumutil
+from Dev.Marketing.Libs.PageObjectLibrary import *
+#from Dev.Marketing.Libs import MarketingLib
+from Dev.TestRails import ITAFTestRailLibrary
+from Dev.Siebel import Siebelservicelib
 
 import time
 browser = 'gc'
@@ -16,9 +16,9 @@ url = 'http://google.co.in'
 suser ='SUPPORT_ADMIN'
 spassword = 'SUPPORT_ADMIN'
 Variablesfile  = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Resources/ITAFParameters.cfg'
-runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/RunManager_Service v1.0 temp.xlsx'
+runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/RunManager_Service v3.0.xlsx'
 runmanagersheet = 'RunManager'
-databankfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/ITAF_DataBank_Service Temp.xlsx'
+databankfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/ITAF_DataBank_Service.xlsx'
 trresultdict = {}
 
 iniittaf = InitializeITAF.initializeITAF()
@@ -27,7 +27,7 @@ print('globaldict')
 print(globaldict)
 tlibe = ITAFTestRailLibrary.TestRailLibraryExt(globaldict['TestRailURL'], globaldict['TestRailUser'], globaldict['TestRailPassword'])
 trailproject = 'Siebel'
-trailrun = 'Regression Automation POC'
+trailrun = 'Siebel Regression 29Mar2019'
 trailrunid = tlibe.Get_TestRail_RunID(tlibe,trailproject ,trailrun)
 print('trailrunid' + str(trailrunid))
 xllib = XLLib.XLLib()
@@ -73,6 +73,7 @@ for row in range(2,(int(xllib.get_xl_row_count(runmanagerfile,runmanagersheet) +
                 for function in functionlist:
                     print('function')
                     print(function)
+
                     stepno = stepno + 1
 
                     func = getattr(siebelservicelib, function)
@@ -82,6 +83,11 @@ for row in range(2,(int(xllib.get_xl_row_count(runmanagerfile,runmanagersheet) +
                     print('**************************************999999999999999999999')
                     print(stepdict)
                     tempdict = {}
+                    if stepno == 1:
+                        if not stepdict['actual'] is None:
+
+                            #sr = stepdict['actual']
+                            srresultsfile.write(str(stepdict['actual']))
                     tempdict['content'] = 'step' + str(stepno)
                     if stepdict['expected'] is None:
                         tempdict['expected'] = 'As Expected'

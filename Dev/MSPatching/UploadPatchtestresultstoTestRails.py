@@ -2,12 +2,12 @@ from Dev.TestRails import ITAFTestRailLibrary
 from Dev.Utilities import Utillib
 from Dev.Excel import XLLib
 
-ResultsFile = "C:/Users/sanumolu/Documents/PatchResults/Consolidated Patch Testing Results 15Mar2019.xlsx"
+ResultsFile = "C:/Results/Siebel Service MS Patch Teting Results 08Apr2019.xlsx"
 TestRailURL = 'https://tr.labs.quest.com/testrail/'
 TestRailUser = 'seshikanth.anumolu@quest.com'
 TestRailPassword = 'P@ssw0rd@27'
 project_name = "MS Patching"
-run_name = "MS Patching 3/16/2019"
+run_name = "Emergency Fix 4/08/2019"
 
 tlibe = ITAFTestRailLibrary.TestRailLibraryExt(TestRailURL, TestRailUser, TestRailPassword)
 runid = tlibe.Get_TestRail_RunID(tlibe,project_name,run_name)

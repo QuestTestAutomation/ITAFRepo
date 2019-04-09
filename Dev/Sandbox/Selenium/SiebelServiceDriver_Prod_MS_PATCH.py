@@ -17,7 +17,7 @@ url = 'http://google.co.in'
 suser ='SUPPORT_ADMIN'
 spassword = 'SUPPORT_ADMIN'
 Variablesfile  = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Resources/ITAFParameters.cfg'
-runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/ITAF_RunManager_Service_MS_Patch.xlsx'
+runmanagerfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/ITAF_RunManager_Service_MS_Patch temp.xlsx'
 runmanagersheet = 'RunManager'
 databankfile = 'C:/Users/sanumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/ITAF_DataBank_Service_MSPatch.xlsx'
 trresultdict = {}
@@ -28,7 +28,7 @@ print('globaldict')
 print(globaldict)
 tlibe = ITAFTestRailLibrary.TestRailLibraryExt(globaldict['TestRailURL'], globaldict['TestRailUser'], globaldict['TestRailPassword'])
 trailproject = 'MS Patching'
-trailrun = 'MS Patching 3/16/2019'
+trailrun = 'Emergency Fix 4/08/2019'
 trailrunid = tlibe.Get_TestRail_RunID(tlibe,trailproject ,trailrun)
 print('trailrunid' + str(trailrunid))
 xllib = XLLib.XLLib()

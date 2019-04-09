@@ -2,13 +2,13 @@ from Dev.TestRails import ITAFTestRailLibrary
 from Dev.Utilities import Utillib
 from Dev.Excel import XLLib
 
-#ResultsFile = "C:/Users/anumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/Siebel Service Regression Testing Results 29Mar2019.xlsx"
-ResultsFile = "C:/Siebel Service Regression Testing Results 29Mar2019.xlsx"
+#ResultsFile = "C:/Users/anumolu/Documents/QSTAFGdrive/VDI 1/ITAF/ITAFRepo/Dev/Files/Siebel Service/Results/Siebel Service Regression Testing Results 02Apr2019.xlsx"
+ResultsFile = "C:/Results/Siebel Service Regression Testing Results 03Apr2019.xlsx"
 TestRailURL = 'https://tr.labs.quest.com/testrail/'
 TestRailUser = 'seshikanth.anumolu@quest.com'
 TestRailPassword = 'P@ssw0rd@27'
 project_name = "Siebel"
-run_name = "Siebel Regression 29Mar2019"
+run_name = "Siebel Regression 03Apr2019"
 
 tlibe = ITAFTestRailLibrary.TestRailLibraryExt(TestRailURL, TestRailUser, TestRailPassword)
 runid = tlibe.Get_TestRail_RunID(tlibe,project_name,run_name)
